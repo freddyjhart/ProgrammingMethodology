@@ -14,29 +14,50 @@ public class CheckerboardKarel extends SuperKarel {
 
 	public void run()
 	{
-	
-		while (true) 
+		while(frontIsClear())
 		{
-			if (frontIsClear()) 
-			{
-				move();
-				putBeeper();
-				if(frontIsClear())
-				{
-					move();
-				}
-				else
-				{
-					turnLeft();
-					move();
-				}
-			}
-			else
-			{
-				turnLeft();
-				move();
-			}
-			
+			fillLine();
+			endOfLineCheck();
 		}
+		
 	}
+
+	private void fillLine() 
+	{
+		while(frontIsClear())
+		{
+			move();
+			if(frontIsClear())
+			{
+				putBeeper();
+				move();
+			}
+		}
+		
+	}
+	public void endOfLineCheck()
+	{
+		if(facingEast())
+		{
+			putBeeper();
+			turnLeft();
+			if(frontIsClear())
+			{
+				move();
+				turnLeft();
+			}
+		}
+		else
+		{
+			putBeeper();
+			turnRight();
+			if(frontIsClear())
+			{
+				move();
+				turnRight();
+			}
+		}
+		
+	}
+	
 }
