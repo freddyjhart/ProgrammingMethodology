@@ -14,56 +14,46 @@ public class StoneMasonKarel extends SuperKarel {
 
 	public void run()
 	{
-		checkRow();
-	}
-	private void checkRow()
-	{
-		if(noBeepersPresent())
-		{
-			move();
+		while(frontIsClear())
+		{	
+			buildColumn();
+			moveFour();
 		}
-		else
-		{
-			checkColumn();
-		}
+		buildColumn();
 	}
-	
-	private void checkColumn()
-	{
-		if(facingEast())
+
+	private void buildColumn() {
+		turnLeft();
+		while(frontIsClear())
 		{
-			turnLeft();
 			if (noBeepersPresent())
 			{
 				putBeeper();
-				if(frontIsClear())
-				{
-					move();
-				}
 			}
-			else
-			{
-				if (frontIsClear())
-				{
-					move();
-				}
-				else
-				{
-					
-				}
-			}
+			move();
 		}
-		else if(facingNorth())
+		putBeeper();
+		backToBottom();
+	}
+	
+	private void backToBottom()
+	{
+		turnAround();
+		while (frontIsClear())
 		{
-			
+			move();
 		}
-		else if (facingWest())
+		turnLeft();
+	}
+	
+	private void moveFour()
+	{
+		if(frontIsClear())
 		{
-			turnRight();
-		}
-		else
-		{
-			turnAround();
+			move();
+			move();
+			move();
+			move();
 		}
 	}
 }

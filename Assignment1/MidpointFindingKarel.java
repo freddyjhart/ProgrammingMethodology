@@ -1,4 +1,5 @@
 /*
+
  * File: MidpointFindingKarel.java
  * -------------------------------
  * When you finish writing it, the MidpointFindingKarel class should
@@ -14,6 +15,91 @@ import stanford.karel.*;
 
 public class MidpointFindingKarel extends SuperKarel {
 
-	// You fill in this part
+	public void run()
+	{
+		moveStackRight();
+		moveStackLeft();
+		putBeeper();
+		
+	}
+
+	private void moveStackRight() 
+	{
+		if (facingEast()) 
+		{
+			putBeeper();
+			while (frontIsClear()) 
+			{
+				move();
+				putBeeper();
+				
+				turnAround();
+				move();
+				if (beepersPresent())
+				{
+				pickBeeper();
+				turnAround();
+				}
+				else
+				{
+					turnAround();
+					move();
+				}
+			}
+			
+		}
+	}
+	private void moveStackLeft()
+	{
+		if (facingEast())
+		{
+			turnAround();
+			while(beepersPresent())
+			{
+				takeAwayBeepers();
+				move();
+			}
+			move();
+			turnAround();
+			move();
+		}
+		else
+		{
+			while(beepersPresent())
+			{
+				takeAwayBeepers();
+				move();
+			}
+		}
+	
+	}
+	private void takeAwayBeepers()
+	{
+		while (beepersPresent())
+		{
+			pickBeeper();
+			if(beepersPresent())
+			{
+				pickBeeper();
+			}
+			else
+			{
+				turnLeft();
+				turnRight();
+			}
+			
+			while (beepersPresent()) 
+			{
+				pickBeeper();
+				move();
+				putBeeper();
+				turnAround();
+				move();
+				turnAround();
+			}
+		}
+			
+		
+	}
 
 }
