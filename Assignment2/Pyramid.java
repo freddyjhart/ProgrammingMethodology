@@ -25,7 +25,6 @@ public class Pyramid extends GraphicsProgram {
 
 /** Number of bricks in the base of the pyramid */
 	private static final int BRICKS_IN_BASE = 14;
-	int i = 0;
 	int windowHeight = BRICK_WIDTH * BRICKS_IN_BASE + 10;
 	int windowLength = BRICK_HEIGHT * BRICKS_IN_BASE + 1;
 	
@@ -38,6 +37,8 @@ public class Pyramid extends GraphicsProgram {
 	
 	public void setBricksOnBase()
 	{
+		int i = 0;
+		
 		while(i < BRICKS_IN_BASE+1)
 		{
 			GRect rect1 = new GRect(BRICK_WIDTH, BRICK_HEIGHT);
