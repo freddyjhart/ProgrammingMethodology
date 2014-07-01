@@ -26,29 +26,35 @@ public class Pyramid extends GraphicsProgram {
 /** Number of bricks in the base of the pyramid */
 	private static final int BRICKS_IN_BASE = 14;
 	int windowHeight = BRICK_HEIGHT * BRICKS_IN_BASE + 10;
-	int windowWidth = BRICK_WIDTH * BRICKS_IN_BASE + 1;
+	int windowWidth = BRICK_WIDTH * (BRICKS_IN_BASE + 1);
 	
 	public void run() {
 		
 		setSize(windowWidth, windowHeight);
-		setBricksOnBase();
+		int bricksInRow = BRICKS_IN_BASE;
+		int rowNum = 1;
 		
+		while(bricksInRow > 0)
+		{
+			setBricks(bricksInRow, rowNum);
+			bricksInRow--;
+			rowNum++;
+		}
 	}
 	
-	public void setBricksOnBase()
+	public void setBricks(int bricksInBase, int rowNum)
 	{
 		int i = 0;
-		int amountOfBricksInRow = 0;
 		
-		while(i < BRICKS_IN_BASE+1)
+		while(i < BRICKS_IN_BASE)
 		{
 			GRect rect1 = new GRect(BRICK_WIDTH, BRICK_HEIGHT);
-			rect1.setLocation((windowWidth/2)-(((BRICKS_IN_BASE/2) * BRICK_WIDTH)), windowHeight-(BRICK_HEIGHT));
+			rect1.setLocation((windowWidth/2)-(((bricksInBase/2) * BRICK_WIDTH)) + i * BRICK_WIDTH, windowHeight - BRICK_HEIGHT * rowNum);
 			add(rect1);
 			i++;
-			
-			
 		}
+		
+		
 	}
 	
 }
